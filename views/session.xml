@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_academy_session_calender" model="ir.ui.view">
+        <field name="name">academy.session.calender</field>
+        <field name="model">academy.session</field>
+        <field name="arch" type="xml">
+           <calendar string="Session" date_start="date">
+           </calendar>
+        </field>
+    </record>
+    <record id="view_academy_session_kanban" model="ir.ui.view">
+        <field name="name">academy.session.kanban</field>
+        <field name="model">academy.session</field>
+        <field name="arch" type="xml">
+            <kanban>
+                 <field name="name"/>
+                 <field name="date"/>
+                 <field name="seat"/>
+                 <field name="percentage" widget="progressbar"/>
+                 <field name="duration"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        <field name="course_id"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+<!--    <record id="view_academy_session_gantt" model="ir.ui.view">-->
+<!--        <field name="name">academy.session.gantt</field>-->
+<!--        <field name="model">academy.session</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <gantt date_start="date"-->
+<!--                   date_stop="end_date">-->
+
+<!--                 <field name="name"/>-->
+<!--                 <field name="date"/>-->
+<!--                 <field name="seat"/>-->
+<!--                 <field name="instructor_id"/>-->
+<!--                 <field name="duration"/>-->
+<!--                 <field name="course_id"/>-->
+<!--                 <field name="attendees_id"/>-->
+<!--                 <field name="percentage"/>-->
+<!--                 <field name="student_id"/>-->
+
+<!--            </gantt>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+    <record id="view_academy_session_tree" model="ir.ui.view">
+        <field name="name">academy.session.tree</field>
+        <field name="model">academy.session</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="current_date &lt; date"
+                   decoration-danger="current_date &gt; date">
+               <field name="name"/>
+               <field name="date"/>
+               <field name="seat"/>
+               <field name="percentage" widget="progressbar"/>
+               <field name="duration"/>
+
+            </tree>
+        </field>
+    </record>
+
+     <record id="view_academy_session_graph" model="ir.ui.view">
+        <field name="name">academy.session.graph</field>
+        <field name="model">academy.session</field>
+        <field name="arch" type="xml">
+            <graph type="bar" >
+                <field name="course_id" type="row" />
+                <field name="count_attendees"  type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_academy_session_form" model="ir.ui.view">
+        <field name="name">academy.session.form</field>
+        <field name="model">academy.session</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+<!--                    <button name="%(open_academy.action_wizard_transient)d" string="Wizard" class="oe_highlight" type="action"/>-->
+                    <button name="wizard" string="Wizard" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                      <group>
+                           <field name="name" required="True"/>
+                           <field name="date" required="True"/>
+                           <field name="end_date"/>
+                           <field name="instructor_id"
+                                  domain="[('instructor','=',True)]"/>
+                           <field name="active" default="True"/>
+                      </group>
+                      <group>
+                          <field name="seat"/>
+                          <field name="duration"/>
+                          <field name="course_id"/>
+                          <field name="attendees_id" widget="many2many_tags"/>
+                          <field name="percentage"/>
+                          <field name="student_id" widget="many2many_tags"/>
+                      </group>
+                   </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_academy_session" model="ir.actions.act_window">
+        <field name="name">Session</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">academy.session</field>
+        <field name="view_mode">tree,form,calendar,graph,kanban</field>
+        <field name="help" type="html">
+               <p class="o_innocent_view_smiling_face">
+                  Create your session!
+               </p>
+        </field>
+
+    </record>
+
+    <menuitem id="menu_session"
+              name="Session"
+              parent="menu_open_academy"
+              action="action_academy_session"
+              sequence="0"/>
+
+</odoo>

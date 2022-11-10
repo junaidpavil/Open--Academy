@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_academy_course_tree" model="ir.ui.view">
+        <field name="name">academy.course.tree</field>
+        <field name="model">academy.course</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="title"/>
+                 <field name="description"/>
+                 <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_academy_course_form" model="ir.ui.view">
+        <field name="name">academy.course.form</field>
+        <field name="model">academy.course</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                      <field name="title"  required='True'/>
+                      <field name="user_id"/>
+
+                </group>
+                 <notebook>
+                        <page string="session">
+                            <field name="relation_ids"/>
+                        </page>
+                        <page string="description">
+                            <field name="description"/>
+                        </page>
+                 </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_course_search" model="ir.ui.view">
+        <field name="name">academy.course.search</field>
+        <field name="model">academy.course</field>
+        <field name="arch" type="xml">
+           <search>
+               <field name="title" filter_domain="['|',('title','ilike',self),('description','ilike',self)]"/>
+               <field name="description"/>
+               <field name="user_id" />
+               <filter name="user_course" string="user course"
+                       domain="[('user_id','=','')]"/>
+               <group string="Group By">
+                      <filter name="group_by_user" string="User"
+                         context="{'group_by': 'user_id'}"/>
+               </group>
+
+           </search>
+
+        </field>
+
+    </record>
+
+     <record id="action_academy_detail" model="ir.actions.act_window">
+           <field name="name">Course</field>
+           <field name="type">ir.actions.act_window</field>
+           <field name="res_model">academy.course</field>
+           <field name="view_mode">tree,form</field>
+           <field name="help" type="html">
+               <p class="o_innocent_view_smiling_face">
+                  Create your record !
+                </p>
+           </field>
+     </record>
+
+
+     <menuitem id="menu_open_academy"
+              name="Academy"
+              sequence="0"/>
+
+     <menuitem id="menu_open_course"
+              name="Course"
+              parent="menu_open_academy"
+              action="action_academy_detail"
+              sequence="0"/>
+
+
+</odoo>

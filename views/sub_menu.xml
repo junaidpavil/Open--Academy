@@ -1,0 +1,16 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<odoo>-->
+<!--   <record id="action_course_detail" model="ir.actions.act_window">-->
+<!--       <field name="name">Course</field>-->
+<!--       <field name="type">ir.actions.act_window</field>-->
+<!--       <field name="view_"-->
+<!--   </record>-->
+
+
+
+<!--    <menuitem id="menu_academy_course"-->
+<!--              name="Courses"-->
+<!--              parent="menu_open_course"-->
+<!--              sequence="1"/>-->
+
+<!--</odoo>-->

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report
+        id="report_open_academy"
+        string="Session Card"
+        model="academy.session"
+        report_type="qweb-pdf"
+        name="open_academy.report_session"
+        file="open_academy.report_session"/>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_transient_form" model="ir.ui.view">
+        <field name="name">transient.wizard.form</field>
+        <field name="model">academy.transient</field>
+
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+
+                        <field name="relation_sid" />
+                        <field name="relation_cid" widget="many2many_tags"/>
+                    </group>
+                    <footer>
+                        <button name="action_save" string="Save" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Discard" class="btn-secondary"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_transient" model="ir.actions.act_window">
+        <field name="name">transient</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">academy.transient</field>
+        <field name="context">{}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="view_wizard"
+              name="Transient"
+              parent="menu_open_academy"
+              action="action_wizard_transient"/>
+
+
+</odoo>

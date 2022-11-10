@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_session">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 text-align="center"> Session Card</h2>
+                      <br> Name :<span t-field="o.name"/></br>
+                      <br>  Start Date :<span t-field="o.date"/></br>
+                      <br>  End Date :<span t-field="o.end_date"/></br>
+                      <br>  Attendees :<span t-field="o.attendees_id"/></br>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

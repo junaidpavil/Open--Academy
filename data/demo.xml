@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="demo_academy_course1" model="academy.course">
+        <field name="title">Academy Courses  </field>
+        <field name="description">academy course detail</field>
+    </record>
+     <record id="demo_academy_course2" model="academy.course">
+        <field name="title">Academy Courses 2</field>
+        <field name="description">academy course detail 2</field>
+    </record>
+     <record id="demo_academy_course3" model="academy.course">
+        <field name="title">Academy Courses 3 </field>
+        <field name="description">academy course detail 3</field>
+    </record>
+</odoo>
